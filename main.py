@@ -1,14 +1,21 @@
 from stats import get_word_count, get_char_count
+import sys
 
-def get_book_text():
-    with open("books/frankenstein.txt") as f:
+def get_book_text(path):
+    with open(path, "r", encoding="utf-8") as f:
         return f.read()       
 
 def main():
+    if len(sys.argv) < 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+
+    book_path = sys.argv[1]
+
     print("============ BOOKBOT ============")
-    print("Analyzing book found at books/frankenstein.txt...")
+    print(f"Analyzing book found at {book_path}...")
     
-    text = get_book_text()
+    text = get_book_text(book_path)
 
     # word count
     print("----------- Word Count ----------")
